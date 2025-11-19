@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZAP // TACTICAL DATA ARCHITECT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@700;900&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              'foundation': '#121212',
+              'foundation-light': '#1A1A1A',
+              'foundation-lighter': '#2A2A2A',
+              'neon-surge': '#00FFC0',
+              'text-primary': '#FFFFFF',
+              'text-secondary': '#D3D3D3',
+              'text-tertiary': '#999999',
+              'warning-low': '#FF6B00',
+              'warning-high': '#FF0033',
+            },
+            fontFamily: {
+              orbitron: ['Orbitron', 'sans-serif'],
+              'roboto-mono': ['Roboto Mono', 'monospace'],
+              'rajdhani': ['Rajdhani', 'sans-serif'],
+              'jetbrains-mono': ['JetBrains Mono', 'monospace'],
+            },
+            keyframes: {
+              glow: {
+                'from': { textShadow: '0 0 10px rgba(0,255,192,0.5), 0 0 20px rgba(0,255,192,0.5)' },
+                'to': { textShadow: '0 0 20px rgba(0,255,192,1), 0 0 30px rgba(0,255,192,1)' },
+              },
+              'pulse-glow': {
+                '0%, 100%': { opacity: 0.5 },
+                '50%': { opacity: 1 },
+              },
+               'pulse-glow-shadow': {
+                '0%, 100%': { boxShadow: '0 0 10px rgba(0, 255, 192, 0.2), 0 0 20px rgba(0, 255, 192, 0.0)' },
+                '50%': { boxShadow: '0 0 30px rgba(0, 255, 192, 0.4), 0 0 50px rgba(0, 255, 192, 0.1)' },
+              },
+              scanline: {
+                '0%': { transform: 'translateY(-10%)', opacity: 0 },
+                '10%, 90%': { opacity: 0.05 },
+                '100%': { transform: 'translateY(110%)', opacity: 0 },
+              },
+              'scan-line': {
+                '0%': { transform: 'translateY(-100%)' },
+                '100%': { transform: 'translateY(100%)' },
+              },
+              shimmer: {
+                '100%': { transform: 'translateX(100%)' },
+              },
+              fadeIn: {
+                'from': { opacity: 0, transform: 'translateY(10px)' },
+                'to': { opacity: 1, transform: 'translateY(0)' },
+              },
+              'moving-grid': {
+                '0%': { backgroundPosition: '0 0' },
+                '100%': { backgroundPosition: '50px 50px' },
+              },
+              slide: {
+                'from': { transform: 'translateX(0)' },
+                'to': { transform: 'translateX(-50%)' },
+              },
+              'glitch-reveal': {
+                '0%': { clipPath: 'inset(50% 0 50% 0)', opacity: 0 },
+                '50%': { clipPath: 'inset(25% 0 25% 0)' },
+                '100%': { clipPath: 'inset(0 0 0 0)', opacity: 1 },
+              },
+              'depth-in': {
+                'from': { opacity: 0, transform: 'perspective(1000px) translateZ(-200px) translateY(30px)' },
+                'to': { opacity: 1, transform: 'perspective(1000px) translateZ(0) translateY(0)' },
+              },
+              'fade-up': {
+                  'from': { opacity: 0, transform: 'translateY(20px)' },
+                  'to': { opacity: 1, transform: 'translateY(0)' },
+              },
+              'footer-scan-vertical': {
+                'from': { backgroundPosition: '0 0' },
+                'to': { backgroundPosition: '0 100px' },
+              },
+              fadeInUp: { 
+                'from': { opacity: 0, transform: 'translateY(20px)' }, 
+                'to': { opacity: 1, transform: 'translateY(0)' } 
+              },
+              modalEnter: {
+                'from': { opacity: 0, transform: 'scale(0.95)' },
+                'to': { opacity: 1, transform: 'scale(1)' },
+              },
+            },
+            animation: {
+              glow: 'glow 3s ease-in-out infinite alternate',
+              'pulse-glow': 'pulse-glow 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'pulse-glow-shadow': 'pulse-glow-shadow 3s infinite ease-in-out',
+              scanline: 'scanline 8s linear infinite',
+              'scan-line': 'scan-line 5s infinite linear',
+              shimmer: 'shimmer 1.5s infinite',
+              fadeIn: 'fadeIn 0.5s ease-out forwards',
+              'moving-grid': 'moving-grid 30s linear infinite',
+              slide: 'slide 40s linear infinite',
+              'glitch-reveal': 'glitch-reveal 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both',
+              'depth-in': 'depth-in 0.8s ease-out both',
+              'fade-up': 'fade-up 0.6s ease-out 0.2s both',
+              'footer-scan': 'footer-scan-vertical 15s linear infinite',
+              'fade-in-up': 'fadeInUp 0.3s ease-out',
+              'modal-enter': 'modalEnter 0.3s ease-out',
+            },
+            boxShadow: {
+              'neon-glow-md': '0 0 30px rgba(0,255,192,0.4)',
+              'neon-glow-lg': '0 0 50px rgba(0,255,192,0.8)',
+              'neon-card': '0 6px 20px rgba(0,255,192,0.1)',
+              'neon-card-hover': '0 12px 30px rgba(0,255,192,0.2)',
+              'warning-glow': '0 0 20px rgba(255,51,51,0.2)',
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+        body {
+            background-color: #121212;
+            font-family: 'Rajdhani', sans-serif;
+            color: #FFFFFF;
+        }
+        body.modal-open {
+          overflow: hidden;
+        }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .font-roboto-mono { font-family: 'Roboto Mono', monospace; }
+        .font-rajdhani { font-family: 'Rajdhani', sans-serif; }
+        .font-jetbrains-mono { font-family: 'JetBrains Mono', monospace; }
+
+        .text-glow { text-shadow: 0 0 12px rgba(0, 255, 192, 0.6); }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #121212; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background-color: #00FFC0; border-radius: 20px; }
+
+        .card-lift {
+            transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+        }
+        .card-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 30px rgba(0,255,192,0.4);
+        }
+        .mask-image-lr {
+          -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+          mask-image: linear-gradient(to right, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
+        }
+        .animate-scan-line::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to bottom, transparent, rgba(0, 255, 192, 0.1) 50%, transparent 100%);
+          animation: scan-line 5s infinite linear;
+          pointer-events: none;
+        }
+        /* Footer-specific styles from blueprint */
+        .neon-text-shadow {
+            text-shadow: 0 0 5px rgba(0, 255, 192, 0.5), 0 0 10px rgba(0, 255, 192, 0.2);
+        }
+        .border-neon-glow {
+            box-shadow: 0 0 10px rgba(0, 255, 192, 0.1);
+        }
+        .zap-logo {
+            background-image: linear-gradient(90deg, #00FFC0, #88ffed);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+        .footer-scan-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .footer-scan-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            background-image: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 255, 192, 0.04) 3px,
+                rgba(0, 255, 192, 0.04) 4px
+            );
+            background-size: 100% 100px;
+            opacity: 0.5;
+            animation: footer-scan-vertical 15s linear infinite;
+        }
+        .bg-grid { 
+          background-image: linear-gradient(rgba(0,255,192,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,192,0.02) 1px, transparent 1px); 
+          background-size: 20px 20px; 
+        }
+        .text-shadow-neon { text-shadow: 0 0 5px #00FFC0, 0 0 10px #00FFC0; }
+        
+        /* Policy Page Toggle Animation */
+        .policy-content-wrapper {
+          display: grid;
+          grid-template-rows: 0fr;
+          transition: grid-template-rows 0.5s ease-in-out;
+        }
+        .policy-content-wrapper.expanded {
+          grid-template-rows: 1fr;
+        }
+        .policy-content {
+          overflow: hidden;
+        }
+    </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/google-genai@0.0.0-20240723-145445",
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
